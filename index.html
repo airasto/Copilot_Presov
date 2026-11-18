@@ -1,0 +1,191 @@
+<!doctype html><html lang="sk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>AI COPILOT v praxi - cvičenia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#E60000;--red2:#C80000;--red3:#AA0000;--ink:#000;--ink2:#333;--mut:#54595F;--bg:#fff;--soft:#F5F5F5;--line:#E3E3E3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Objektiv Mk1","Figtree",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.hero{position:relative;overflow:hidden;padding:56px 0 48px;border-bottom:1px solid var(--line)}
+.hero .r1,.hero .r2{position:absolute;border-radius:50%;pointer-events:none}
+.hero .r1{width:520px;height:520px;right:-180px;top:-140px;border:56px solid var(--red)}
+.hero .r2{width:300px;height:300px;right:-50px;top:-30px;border:44px solid var(--red3)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);margin-bottom:28px}
+.brand svg{width:34px;height:34px;color:var(--red)}
+.kicker{display:inline-block;background:#000;color:#fff;border-radius:999px;padding:6px 16px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(36px,6vw,64px);line-height:1;font-weight:600;letter-spacing:-.03em;margin:18px 0 14px;max-width:640px;position:relative}
+.lead{font-size:19px;color:var(--ink2);max-width:600px;position:relative}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0 8px;position:relative}
+.step{background:var(--soft);border-radius:24px;padding:20px}
+.step b{display:inline-flex;width:34px;height:34px;border-radius:50%;border:4px solid var(--red);align-items:center;justify-content:center;color:var(--red);font-size:14px;margin-bottom:8px}
+.zip{display:inline-block;margin-top:24px;background:linear-gradient(135deg,var(--red),var(--red3));color:#fff;text-decoration:none;font-weight:600;padding:14px 26px;border-radius:999px;position:relative}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding:20px 0;position:sticky;top:0;background:rgba(255,255,255,.96);z-index:5;border-bottom:1px solid var(--line)}
+nav.toc a{text-decoration:none;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600}
+nav.toc a:hover{background:var(--ink);color:#fff}
+h2{font-size:30px;font-weight:600;letter-spacing:-.02em;margin:44px 0 18px}
+.card{border:2px solid var(--ink);border-radius:32px;padding:28px;margin-bottom:22px;scroll-margin-top:80px}
+.card header{display:flex;gap:18px;align-items:flex-start;margin-bottom:12px}
+.card .no{flex:0 0 64px;height:64px;border-radius:50%;border:6px solid var(--red);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--red)}
+.card h3{font-size:24px;line-height:1.2;font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.meta span{font-size:13px;border:1.5px solid var(--mut);color:var(--mut);border-radius:999px;padding:2px 10px}
+.zad{margin:8px 0 14px}
+.files{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.file{font-size:14px;color:var(--red3);text-decoration:none;background:#FFF0F0;border-radius:12px;padding:6px 12px;word-break:break-all}
+.file::before{content:"\2193  "}
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.way{border-radius:20px;padding:14px 16px;font-size:15px}
+.way b{display:block;margin-bottom:4px}
+.paid{background:#000;color:#fff}.free{background:var(--soft)}
+.prompt{border:1.5px solid var(--line);border-radius:20px;margin-top:12px;overflow:hidden}
+.ph{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--soft)}
+.lvl{font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.1em}
+.copy{font:inherit;font-size:14px;font-weight:600;background:var(--red);color:#fff;border:0;border-radius:999px;padding:6px 16px;cursor:pointer}
+.copy.ok{background:#000}
+pre{white-space:pre-wrap;font-family:inherit;font-size:16px;padding:14px 16px}
+.variant{margin-top:12px;font-size:15px;background:#FFF0F0;border-radius:16px;padding:12px 14px}
+footer{padding:36px 0 56px;color:var(--mut);font-size:14px;display:flex;align-items:center;gap:10px}
+footer svg{width:26px;height:26px;color:var(--red)}
+@media(max-width:720px){.steps,.ways{grid-template-columns:1fr}.card{padding:20px;border-radius:24px}.hero .r1{width:300px;height:300px;right:-150px;border-width:36px}.hero .r2{display:none}}
+</style></head><body>
+<section class="hero"><div class="r1"></div><div class="r2"></div><div class="wrap">
+<div class="brand"><svg viewBox="628 96 178 178" aria-hidden="true"><path fill="currentColor" d="M 716.898438 108.832031 C 674.945312 108.832031 640.8125 142.960938 640.8125 184.914062 C 640.8125 226.871094 674.945312 261 716.898438 261 C 758.851562 261 792.984375 226.871094 792.984375 184.914062 C 792.984375 142.960938 758.851562 108.832031 716.898438 108.832031 M 716.898438 270.101562 C 669.925781 270.101562 631.710938 231.882812 631.710938 184.914062 C 631.710938 137.945312 669.925781 99.730469 716.898438 99.730469 C 763.867188 99.730469 802.085938 137.945312 802.085938 184.914062 C 802.085938 231.882812 763.867188 270.101562 716.898438 270.101562 "/><path fill="currentColor" d="M 697.027344 236.738281 L 734.597656 236.738281 C 750.65625 236.738281 763.71875 223.675781 763.71875 207.617188 C 763.71875 199.226562 760.078125 191.230469 753.722656 185.679688 L 752.847656 184.914062 L 753.722656 184.152344 C 760.078125 178.601562 763.71875 170.605469 763.71875 162.21875 C 763.71875 146.160156 750.65625 133.09375 734.597656 133.09375 L 697.027344 133.09375 L 697.027344 145.933594 L 734.597656 145.933594 C 743.578125 145.933594 750.882812 153.238281 750.882812 162.21875 C 750.882812 171.101562 743.652344 178.402344 734.769531 178.496094 L 697.027344 178.492188 L 697.027344 191.339844 L 734.597656 191.339844 C 743.660156 191.441406 750.882812 198.742188 750.882812 207.617188 C 750.882812 216.59375 743.578125 223.898438 734.597656 223.898438 L 697.027344 223.898438 Z M 697.027344 236.738281 "/><path fill="currentColor" d="M 699.199219 155.84375 C 683.140625 155.84375 670.078125 168.90625 670.078125 184.96875 C 670.078125 201.027344 683.140625 214.09375 699.199219 214.09375 L 736.765625 214.09375 L 736.765625 201.25 L 699.199219 201.25 C 690.222656 201.25 682.914062 193.945312 682.914062 184.96875 C 682.914062 175.984375 690.222656 168.679688 699.199219 168.679688 L 736.765625 168.679688 L 736.765625 155.84375 Z M 699.199219 155.84375 "/></svg><span>Balanced HR</span></div>
+<span class="kicker">Workshop</span>
+<h1>AI COPILOT v&nbsp;praxi</h1>
+<p class="lead">Cvičenia na fiktívnej firme Lumora Vision s.r.o. Každé cvičenie má dva prompty: pre začiatočníkov a&nbsp;pre pokračujúcich, a&nbsp;postup pre platený aj bezplatný Copilot.</p>
+<div class="steps">
+<div class="step"><b>1</b><p>Stiahnite si všetky podklady naraz alebo pri konkrétnom cvičení.</p></div>
+<div class="step"><b>2</b><p>Prihláste sa do Copilota pracovným účtom. Vľavo hore musí byť zelený štít ochrany údajov.</p></div>
+<div class="step"><b>3</b><p>Skopírujte prompt, vložte ho do Copilota a&nbsp;výsledok vždy skontrolujte.</p></div>
+</div>
+<a class="zip" href="subory/podklady-vsetko.zip" download>Stiahnuť všetky podklady (ZIP)</a>
+</div></section>
+<div class="wrap">
+<nav class="toc"><a href="#cv01">01</a><a href="#cv02">02</a><a href="#cv03">03</a><a href="#cv07">07</a><a href="#cv08">08</a><a href="#cv05">05</a><a href="#cv04">04</a><a href="#cv06">06</a><a href="#cv09">09</a></nav>
+<h2>Dopoludnia</h2>
+<article class="card" id="cv01">
+  <header><span class="no">01</span><div><h3>Plán verzus skutočnosť</h3>
+  <p class="meta"><span>Copilot v Exceli</span><span>Všetci</span><span>25 min</span></p></div></header>
+  <p class="zad">Ste controller v&nbsp;spoločnosti Lumora Vision. Pripravujete podklad k&nbsp;reportingu nákladov za január až september 2026.</p>
+  <div class="files"><a class="file" href="subory/01_Lumora_naklady_plan_skutocnost_2026.xlsx" download>01_Lumora_naklady_plan_skutocnost_2026.xlsx</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Uložte súbor do OneDrive, otvorte ho v&nbsp;Exceli a&nbsp;kliknite na Copilot na páse s&nbsp;nástrojmi.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Otvorte Copilot Chat (m365copilot.com, pracovný účet), cez ikonu + nahrajte súbor a&nbsp;vložte prompt.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>V tabuľke sú plánované a skutočné náklady spoločnosti Lumora Vision za január až september 2026 podľa stredísk a nákladových druhov. Nájdi 5 najväčších odchýlok v eurách a 5 najväčších v percentách. Zobraz ich v tabuľke so strediskom, nákladovým druhom, mesiacom a odchýlkou.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Pracuješ ako controller výrobnej firmy. Analyzuj odchýlky plánu a skutočnosti za január až september 2026.
+1. Oddeľ odchýlky, ktoré sa opakujú viac mesiacov po sebe, od jednorazových.
+2. Pri každej opakovanej odchýlke navrhni 2 možné príčiny a jednu otázku pre vedúceho strediska.
+3. Vytvor prehľad stredisko × mesiac s odchýlkou v %.
+4. Navrhni graf, ktorý vedeniu ukáže trend.
+Ak si niečím nie si istý, napíš to a nevymýšľaj.</pre></div>
+</article>
+<article class="card" id="cv02">
+  <header><span class="no">02</span><div><h3>Komentár k&nbsp;výsledkom pre vedenie</h3>
+  <p class="meta"><span>Copilot vo Worde</span><span>Financie, HR</span><span>20 min</span></p></div></header>
+  <p class="zad">Finančná riaditeľka potrebuje na poradu vedenia stručný komentár k&nbsp;nákladom za 3. štvrťrok. Kolegyňa z&nbsp;HR robí variant s&nbsp;uvítacím e-mailom (nižšie).</p>
+  <div class="files"><a class="file" href="subory/01_Lumora_naklady_plan_skutocnost_2026.xlsx" download>01_Lumora_naklady_plan_skutocnost_2026.xlsx</a><a class="file" href="subory/06d_Onboarding_novy_zamestnanec.pdf" download>06d_Onboarding_novy_zamestnanec.pdf</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Otvorte nový dokument vo Worde, kliknite na Copilot a&nbsp;cez / alebo ikonu sponky pripojte súbor z&nbsp;OneDrive.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Nahrajte súbor do Copilot Chatu, vložte prompt a&nbsp;výsledok skopírujte do Wordu.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Na základe priloženej tabuľky nákladov napíš komentár k nákladom za 3. štvrťrok 2026 (júl až september) pre finančnú riaditeľku. Najviac 1 strana, vecný tón, 3 hlavné zistenia a 2 odporúčania.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Si skúsený controller. Napíš manažérsky komentár k nákladom za 3. štvrťrok 2026 (júl až september) pre finančnú riaditeľku.
+Štruktúra: 1) zhrnutie v 3 vetách, 2) tabuľka 3 najvýznamnejších odchýlok s vysvetlením, 3) riziká na 4. štvrťrok, 4) návrh 2 rozhodnutí.
+Každé tvrdenie podlož číslom z tabuľky. Píš po slovensky, bez všeobecných fráz.
+Pred písaním sa ma opýtaj na 3 veci, ktoré potrebuješ vedieť.</pre></div><p class="variant">HR variant: „Podľa priloženého postupu onboardingu napíš uvítací e-mail pre novú účtovníčku Lenku, ktorá nastupuje 1. decembra 2026. Nadriadená je Mária Kolesárová, buddy Peter Varga. Tón priateľský a&nbsp;profesionálny, vykanie, najviac 200 slov. Na konci pridaj zoznam vecí, ktoré si má priniesť.“</p>
+</article>
+<article class="card" id="cv03">
+  <header><span class="no">03</span><div><h3>Mesačná uzávierka a&nbsp;nezrovnalosti</h3>
+  <p class="meta"><span>Copilot v Exceli</span><span>Financie (paralelne s 07)</span><span>25 min</span></p></div></header>
+  <p class="zad">Robíte uzávierku za október. V&nbsp;zošite sú dva hárky: objednávky a&nbsp;došlé faktúry. Treba ich spárovať a&nbsp;nájsť problémy.</p>
+  <div class="files"><a class="file" href="subory/03_Lumora_uzavierka_oktober.xlsx" download>03_Lumora_uzavierka_oktober.xlsx</a><a class="file" href="subory/06a_Smernica_obeh_uctovnych_dokladov.pdf" download>06a_Smernica_obeh_uctovnych_dokladov.pdf</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Otvorte zošit v&nbsp;Exceli z&nbsp;OneDrive a&nbsp;použite Copilot v&nbsp;Exceli.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Nahrajte zošit do Copilot Chatu a&nbsp;vložte prompt.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Porovnaj hárky Objednávky a Faktúry. Nájdi objednávky, ku ktorým nie je faktúra, a faktúry, ku ktorým nie je objednávka.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Robíš mesačnú uzávierku za október 2026. Spáruj faktúry s objednávkami podľa čísla objednávky a skontroluj:
+1. objednávky bez faktúry,
+2. faktúry s číslom objednávky, ktoré neexistuje,
+3. možné duplicitné faktúry,
+4. rozdiely medzi sumou faktúry a objednávky nad 2 %.
+Výsledok daj do jednej tabuľky so stĺpcom Typ problému. Potom napíš krátky zdvorilý e-mail dodávateľovi, ktorého sa týka rozdiel v cene. Vykaj.</pre></div>
+</article>
+<article class="card" id="cv07">
+  <header><span class="no">07</span><div><h3>Pravidlá používania Copilotu vo firme</h3>
+  <p class="meta"><span>Copilot vo Worde</span><span>IT, HR (paralelne s 03)</span><span>25 min</span></p></div></header>
+  <p class="zad">IT manažér potrebuje pred spustením licencií jednoduché interné pravidlá používania AI. HR doplní časť o&nbsp;osobných údajoch.</p>
+  <div class="files"><a class="file" href="subory/07_Podklady_IT_zavedenie_Copilot.docx" download>07_Podklady_IT_zavedenie_Copilot.docx</a><a class="file" href="subory/06c_Smernica_IT_bezpecnost_a_AI.pdf" download>06c_Smernica_IT_bezpecnost_a_AI.pdf</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Otvorte podklad vo Worde a&nbsp;použite Copilot (prepísať alebo vytvoriť nový dokument z&nbsp;odkazu na súbor).</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Nahrajte oba súbory do Copilot Chatu a&nbsp;výsledok skopírujte do Wordu.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Na základe priložených poznámok IT napíš interné pravidlá používania Microsoft Copilot v spoločnosti Lumora Vision na jednu stranu.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Si IT manažér výrobnej firmy so 140 zamestnancami. Z priložených podkladov navrhni interné pravidlá používania AI:
+1. povolené nástroje a prečo,
+2. aké údaje sa do AI nesmú vkladať, s príkladmi z financií a HR,
+3. rozdiel medzi Copilot Chat a Microsoft 365 Copilot z pohľadu ochrany údajov,
+4. postup pri žiadosti o licenciu,
+5. 5 otázok a odpovedí pre zamestnancov.
+Píš zrozumiteľne pre neodborníkov. Ak si podklady v niečom protirečia, upozorni ma na to.</pre></div>
+</article>
+<article class="card" id="cv08">
+  <header><span class="no">08</span><div><h3>Zhrnutie incidentov a&nbsp;návod</h3>
+  <p class="meta"><span>Copilot v Exceli a vo Worde</span><span>IT (paralelne s 02)</span><span>20 min</span></p></div></header>
+  <p class="zad">Na mesačnú poradu potrebujete prehľad IT incidentov za október a&nbsp;návod na najčastejší problém.</p>
+  <div class="files"><a class="file" href="subory/08_Lumora_IT_incidenty_oktober.xlsx" download>08_Lumora_IT_incidenty_oktober.xlsx</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Analýzu urobte v&nbsp;Exceli s&nbsp;Copilotom, návod vo Worde s&nbsp;Copilotom.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Nahrajte súbor do Copilot Chatu, oba výstupy pripravte tam.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Zhrň IT incidenty za október: koľko ich bolo podľa kategórie a ktoré problémy sa opakujú najčastejšie.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Analyzuj IT incidenty za október 2026.
+1. Nájdi zhluky podľa dátumu a kategórie a navrhni ich spoločnú príčinu.
+2. Vypočítaj priemerný čas riešenia podľa kategórie.
+3. Uveď otvorené tikety.
+Potom napíš návod pre používateľov na problém, ktorý sa opakoval najčastejšie: najviac 6 krokov, jednoduchá reč, vykanie.</pre></div>
+</article>
+<article class="card" id="cv05">
+  <header><span class="no">05</span><div><h3>Porada: zhrnutie a&nbsp;úlohy</h3>
+  <p class="meta"><span>Copilot v Teams</span><span>Všetci</span><span>15 min</span></p></div></header>
+  <p class="zad">Máte prepis porady o&nbsp;septembrových výsledkoch. Potrebujete zhrnutie a&nbsp;jasný zoznam úloh.</p>
+  <div class="files"><a class="file" href="subory/05_Prepis_porady_vysledky_september.docx" download>05_Prepis_porady_vysledky_september.docx</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Na reálnej porade s&nbsp;prepisom otvorte Copilot v&nbsp;Teams počas porady alebo po nej. Dnes použite prepis: otvorte ho vo Worde a&nbsp;použite Copilot.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Nahrajte prepis do Copilot Chatu. Copilot v&nbsp;Teams poradách je dostupný len s&nbsp;platenou licenciou.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Zhrň túto poradu do 5 bodov a vypíš úlohy: kto ich má urobiť a dokedy.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Z prepisu porady vytvor:
+1. zhrnutie rozhodnutí,
+2. tabuľku úloh (úloha, zodpovedný, termín),
+3. zoznam úloh, pri ktorých chýba zodpovedný alebo konkrétny termín,
+4. návrh krátkeho e-mailu účastníkom so zhrnutím.
+Nevymýšľaj mená ani termíny, ktoré v prepise nie sú.</pre></div>
+</article>
+<h2>Popoludní</h2>
+<article class="card" id="cv04">
+  <header><span class="no">04</span><div><h3>Scenár „čo ak“ a&nbsp;prezentácia pre vedenie</h3>
+  <p class="meta"><span>Excel, PowerPoint, Gamma</span><span>Všetci</span><span>25 min</span></p></div></header>
+  <p class="zad">Vedenie chce vedieť, čo s&nbsp;maržami plánovaných zákaziek urobí silnejší dolár a&nbsp;drahšie LED moduly. Výsledok má mať podobu krátkej prezentácie.</p>
+  <div class="files"><a class="file" href="subory/04_Lumora_zakazky_scenare.xlsx" download>04_Lumora_zakazky_scenare.xlsx</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Výpočet v&nbsp;Exceli s&nbsp;Copilotom. Osnovu uložte do Wordu a&nbsp;v&nbsp;PowerPointe zvoľte Copilot &gt; Vytvoriť prezentáciu zo súboru.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Výpočet v&nbsp;Copilot Chate. Osnovu vložte do Gammy (gamma.app &gt; Vytvoriť &gt; Vložiť text).</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>V tabuľke sú plánované zákazky Lumora Vision. Vypočítaj, ako sa zmení marža každej zákazky, ak kurz EUR/USD klesne z 1,10 na 1,00. Náklady v USD sa prepočítavajú kurzom.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Pripravujem podklad pre vedenie. Náklady v USD sa prepočítavajú kurzom EUR/USD. Vytvor tri scenáre:
+A) kurz EUR/USD 1,00,
+B) cena LED modulov +12 % pri kurze 1,10,
+C) oba vplyvy naraz.
+Pre každú zákazku vypočítaj maržu v EUR a v % a označ zákazky, ktoré sa dostanú do straty. Zhrň, ktorý segment je najcitlivejší a prečo.
+Potom navrhni osnovu 5 slidov pre vedenie: titulok a 3 body na každý slide.</pre></div>
+</article>
+<article class="card" id="cv06">
+  <header><span class="no">06</span><div><h3>Znalostná báza zo smerníc</h3>
+  <p class="meta"><span>NotebookLM, Copilot Chat</span><span>Všetci</span><span>25 min</span></p></div></header>
+  <p class="zad">Firemné smernice sú v&nbsp;štyroch PDF. Vytvorte si z&nbsp;nich zdroj odpovedí s&nbsp;citáciami a&nbsp;porovnajte NotebookLM s&nbsp;Copilotom.</p>
+  <div class="files"><a class="file" href="subory/06a_Smernica_obeh_uctovnych_dokladov.pdf" download>06a_Smernica_obeh_uctovnych_dokladov.pdf</a><a class="file" href="subory/06b_Smernica_cestovne_nahrady.pdf" download>06b_Smernica_cestovne_nahrady.pdf</a><a class="file" href="subory/06c_Smernica_IT_bezpecnost_a_AI.pdf" download>06c_Smernica_IT_bezpecnost_a_AI.pdf</a><a class="file" href="subory/06d_Onboarding_novy_zamestnanec.pdf" download>06d_Onboarding_novy_zamestnanec.pdf</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>V&nbsp;Copilot Chate nahrajte tie isté 4 súbory a&nbsp;položte rovnaké otázky. Porovnajte odpovede a&nbsp;citácie.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Otvorte notebooklm.google.com, vytvorte nový notebook a&nbsp;nahrajte 4 PDF ako zdroje.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Do koľkých dní musím vyúčtovať pracovnú cestu? Kedy dostane nový zamestnanec prístup k Microsoft Copilot? Uveď zdroj.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Porovnaj všetky smernice a nájdi miesta, kde si navzájom protirečia. Pri každom rozpore cituj obe smernice a navrhni, ktorú treba upraviť.
+Potom odpovedz: Mám nárok na príspevok na home office? Ak to v zdrojoch nie je, povedz to.</pre></div>
+</article>
+<article class="card" id="cv09">
+  <header><span class="no">09</span><div><h3>Copilot verzus ChatGPT</h3>
+  <p class="meta"><span>Copilot Chat, ChatGPT</span><span>Všetci</span><span>15 min</span></p></div></header>
+  <p class="zad">Tú istú úlohu urobíte v&nbsp;Copilote, lektor ju súčasne ukáže v&nbsp;platenom ChatGPT. Porovnáte výsledok, prácu s&nbsp;tabuľkou a&nbsp;ochranu údajov.</p>
+  <div class="files"><a class="file" href="subory/01_Lumora_naklady_plan_skutocnost_2026.xlsx" download>01_Lumora_naklady_plan_skutocnost_2026.xlsx</a></div>
+  <div class="ways"><div class="way paid"><b>S platenou licenciou</b><p>Copilot v&nbsp;Exceli alebo Copilot Chat so súborom.</p></div>
+  <div class="way free"><b>S bezplatným Copilot Chat</b><p>Copilot Chat so súborom. Do súkromného ChatGPT vkladajte len fiktívne alebo verejné údaje.</p></div></div>
+  <div class="prompt"><div class="ph"><span class="lvl">Začiatočník</span><button class="copy" type="button">Kopírovať</button></div><pre>Použite prompt Pokračovanie z cvičenia 01 a odpoveď si uložte.</pre></div><div class="prompt"><div class="ph"><span class="lvl">Pokračovanie</span><button class="copy" type="button">Kopírovať</button></div><pre>Vlož do Copilota obe odpovede (svoju a tú, ktorú ukázal lektor z ChatGPT) a požiadaj:
+Porovnaj tieto dve analýzy tej istej tabuľky. Skontroluj, či čísla sedia s tabuľkou, ktorá analýza je presnejšia a ktorá lepšie vysvetľuje príčiny. Výsledok daj do tabuľky: kritérium, analýza A, analýza B.</pre></div>
+</article>
+<footer><svg viewBox="628 96 178 178" aria-hidden="true"><path fill="currentColor" d="M 716.898438 108.832031 C 674.945312 108.832031 640.8125 142.960938 640.8125 184.914062 C 640.8125 226.871094 674.945312 261 716.898438 261 C 758.851562 261 792.984375 226.871094 792.984375 184.914062 C 792.984375 142.960938 758.851562 108.832031 716.898438 108.832031 M 716.898438 270.101562 C 669.925781 270.101562 631.710938 231.882812 631.710938 184.914062 C 631.710938 137.945312 669.925781 99.730469 716.898438 99.730469 C 763.867188 99.730469 802.085938 137.945312 802.085938 184.914062 C 802.085938 231.882812 763.867188 270.101562 716.898438 270.101562 "/><path fill="currentColor" d="M 697.027344 236.738281 L 734.597656 236.738281 C 750.65625 236.738281 763.71875 223.675781 763.71875 207.617188 C 763.71875 199.226562 760.078125 191.230469 753.722656 185.679688 L 752.847656 184.914062 L 753.722656 184.152344 C 760.078125 178.601562 763.71875 170.605469 763.71875 162.21875 C 763.71875 146.160156 750.65625 133.09375 734.597656 133.09375 L 697.027344 133.09375 L 697.027344 145.933594 L 734.597656 145.933594 C 743.578125 145.933594 750.882812 153.238281 750.882812 162.21875 C 750.882812 171.101562 743.652344 178.402344 734.769531 178.496094 L 697.027344 178.492188 L 697.027344 191.339844 L 734.597656 191.339844 C 743.660156 191.441406 750.882812 198.742188 750.882812 207.617188 C 750.882812 216.59375 743.578125 223.898438 734.597656 223.898438 L 697.027344 223.898438 Z M 697.027344 236.738281 "/><path fill="currentColor" d="M 699.199219 155.84375 C 683.140625 155.84375 670.078125 168.90625 670.078125 184.96875 C 670.078125 201.027344 683.140625 214.09375 699.199219 214.09375 L 736.765625 214.09375 L 736.765625 201.25 L 699.199219 201.25 C 690.222656 201.25 682.914062 193.945312 682.914062 184.96875 C 682.914062 175.984375 690.222656 168.679688 699.199219 168.679688 L 736.765625 168.679688 L 736.765625 155.84375 Z M 699.199219 155.84375 "/></svg><span>Balanced HR · Lumora Vision s.r.o. je fiktívna spoločnosť vytvorená na účely workshopu.</span></footer>
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+ const t=b.closest('.prompt').querySelector('pre').innerText;
+ try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+ b.textContent='Skopírované';b.classList.add('ok');setTimeout(()=>{b.textContent='Kopírovať';b.classList.remove('ok')},1800);
+}));
+</script></body></html>
